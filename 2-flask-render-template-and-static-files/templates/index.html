@@ -1,21 +1,21 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flask App - Render HTML & CSS Files</title>
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Flask App - Render HTML & Static Files</title>
+{% endblock %}
+
+{% block stylesheet %}
     <!-- Link the stylesheet utilizing Jinja Template Engine -->
     <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/main.css') }}"
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/main.css') }}"
     />
-  </head>
-  <body>
+{% endblock %}
+
+{% block content %}
     <h1>
-      Flask App - Render HTML & CSS Files | Template Inheritance Utilizing Jinja
-      Template Engine
+        Flask App - Render HTML & CSS Files | Template Inheritance Utilizing Jinja Template Engine
     </h1>
 
     <p>Hello</p>
-  </body>
-</html>
+{% endblock %}
