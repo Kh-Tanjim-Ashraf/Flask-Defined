@@ -14,14 +14,22 @@ body {
   margin-top: 2%;
   padding: 0 250px;
 
+  h1#headline {
+    color: #525252;
+  }
+
   form {
     padding: 20px;
-    border: 1px solid #000;
+    border: 1px solid #cfcfcf;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
+
+    div#form-header {
+      color: #525252;
+    }
 
     div#form-body {
       display: flex;
@@ -33,21 +41,27 @@ body {
     div#task-input {
       input#task {
         padding: 10px;
-        border: 1px solid #000;
+        border: 1px solid #c1c1c1;
         border-radius: 8px;
       }
     }
 
     div#form-body button#submit {
       padding: 10px;
-      border: 1px solid #000;
+      border: 1px solid #c1c1c1;
       border-radius: 8px;
+      color: #525252;
+    }
+
+    div#form-body a,
+    div#form-body label {
+      color: #525252;
     }
 
     div#form-body a {
-      color: #000;
       text-decoration: underline;
       text-underline-offset: 10px;
+      text-decoration-color: #525252;
     }
   }
 
@@ -60,7 +74,12 @@ body {
     td,
     th {
       border: 1px solid #c1c1c1;
-      padding: 8px;
+      padding: 10px;
+    }
+
+    tr:first-child {
+      background-color: #747474;
+      color: #fff;
     }
 
     tr:nth-child(even) {
@@ -80,12 +99,19 @@ body {
       text-decoration: none;
     }
 
+    td.task-action-col {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+    }
+
     td.task-action-col .update-btn,
     td.task-action-col .delete-btn {
       display: inline-flex;
       color: #fff;
       padding: 8px 6px;
-      border-radius: 8px;
+      border-radius: 6px;
       cursor: pointer;
       transition: color 50ms;
     }

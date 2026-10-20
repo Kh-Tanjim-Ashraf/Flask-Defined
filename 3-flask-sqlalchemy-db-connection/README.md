@@ -2,6 +2,18 @@
 
 This is a simple Flask application demonstrating how to integrate an SQLite database into a Flask server.
 
+## Project Screenshot
+
+![Homepage](./doc-resources/homepage.png)
+
+<center>Homepage</center>
+
+<br /><br />
+
+![Task Update Page](./doc-resources/task-update-page.png)
+
+<center>Task Update Page</center>
+
 ## How to Setup
 
 1. Create a Python virtual environment.
