@@ -13,70 +13,68 @@
 
 <!-- Content Placeholder -->
 {% block content %}
-  
 
-  <!-- Pass context inside the partial component -->
-  {% with parentTemplate="index" %}
-    <!-- Include the generic task form (For insertion) -->
-    {% include 'partials/task-form/_task-form.html' %}
-  {% endwith %}
+<!-- Pass context inside the task form (Partial reusable component) -->
+{% with parentTemplate="index" %}
+<!-- Include the generic task form (For insertion) -->
+{% include 'partials/task-form/_task-form.html' %} {% endwith %}
 
-  {% if tasks %}
-    <!-- Task List Table -->
-    <table>
-      <!-- Table Header -->
-      <tr>
-        <th>Task</th>
-        <th>Status</th>
-        <th>Action</th>
-      </tr>
-      <!-- Table body -->
-      {% for task in tasks %}
-      <tr>
-        <td class="task-content-col">{{ task.content }}</td>
-        <td class="task-status-col">
-          {% if task.isCompleted %}
-          <span class="task-completed">✔</span>
-          {% else %}
-          <span class="task-not-completed">✘</span>
-          {% endif %}
-        </td>
-        <td class="task-action-col">
-          <!-- Update Button Icon -->
-          <div class="update-btn">
-            <a href="/update/{{task.id}}/">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  fill="currentColor"
-                  d="m10.05 21l2-2H22v2zM3 21v-4.25L16.2 3.575q.275-.275.65-.425t.775-.15t.763.162t.662.438L20.425 5q.275.3.425.663T21 6.4q0 .4-.137.762t-.438.663L7.25 21zM17.6 7.8L19 6.4L17.6 5l-1.4 1.4z"
-                />
-              </svg>
-            </a>
-          </div>
-          <!-- Delete Button Icon -->
-          <div class="delete-btn">
-            <a href="/delete/{{task.id}}/">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  fill="currentColor"
-                  d="M7 21q-.825 0-1.412-.587T5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413T17 21zm2-4h2V8H9zm4 0h2V8h-2z"
-                />
-              </svg>
-            </a>
-          </div>
-        </td>
-      </tr>
-      {% endfor %}
-    </table>
-  {% endif %} 
-{% endblock %}
+<!-- Display the task table only if at least a single task exists in the db  -->
+{% if tasks %}
+<!-- Task List Table -->
+<table>
+  <!-- Table Header -->
+  <tr>
+    <th>Task</th>
+    <th>Status</th>
+    <th>Action</th>
+  </tr>
+  <!-- Table body -->
+  {% for task in tasks %}
+  <tr>
+    <td class="task-content-col">{{ task.content }}</td>
+    <td class="task-status-col">
+      {% if task.isCompleted %}
+      <span class="task-completed">✔</span>
+      {% else %}
+      <span class="task-not-completed">✘</span>
+      {% endif %}
+    </td>
+    <td class="task-action-col">
+      <!-- Update Button Icon -->
+      <a href="/update/{{task.id}}/">
+        <div class="update-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="currentColor"
+              d="m10.05 21l2-2H22v2zM3 21v-4.25L16.2 3.575q.275-.275.65-.425t.775-.15t.763.162t.662.438L20.425 5q.275.3.425.663T21 6.4q0 .4-.137.762t-.438.663L7.25 21zM17.6 7.8L19 6.4L17.6 5l-1.4 1.4z"
+            />
+          </svg>
+        </div>
+      </a>
+      <!-- Delete Button Icon -->
+      <a href="/delete/{{task.id}}/">
+        <div class="delete-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="currentColor"
+              d="M7 21q-.825 0-1.412-.587T5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413T17 21zm2-4h2V8H9zm4 0h2V8h-2z"
+            />
+          </svg>
+        </div>
+      </a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %} {% endblock %}

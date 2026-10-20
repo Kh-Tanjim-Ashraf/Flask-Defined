@@ -61,10 +61,16 @@ def taskUpdate(id):
 
         # Safely retrieve the task status using the `get` method to avoid KeyError
         taskStatus = request.form.get('status')
-        # Convert the boolean like string into Python boolean object
-        taskStatus_bool = taskStatus.lower() == 'true'
-        if taskStatus:
+
+        # If the checkbox is checked during the submission of the task udpate form
+        if bool(taskStatus):
+            # Convert the boolean like string ('true') into Python boolean object
+            taskStatus_bool = taskStatus.lower() == 'true'
             task.isCompleted = taskStatus_bool
+        else:
+            # If the checkbox is unchecked during the submission of the task udpate form; the value will be `None`, thus we manually set the value of `isCompleted` attribute of the Task object to False
+            task.isCompleted = False
+            
 
         # Commit the change into the DB & return
         try:
