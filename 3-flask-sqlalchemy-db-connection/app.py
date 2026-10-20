@@ -59,6 +59,13 @@ def taskUpdate(id):
         # Set the value from the task update form into the task object's content attribute
         task.content = request.form['task']
 
+        # Safely retrieve the task status using the `get` method to avoid KeyError
+        taskStatus = request.form.get('status')
+        # Convert the boolean like string into Python boolean object
+        taskStatus_bool = taskStatus.lower() == 'true'
+        if taskStatus:
+            task.isCompleted = taskStatus_bool
+
         # Commit the change into the DB & return
         try:
             db.session.commit()

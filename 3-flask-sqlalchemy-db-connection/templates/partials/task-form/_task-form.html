@@ -18,9 +18,18 @@
   </div>
   <div id="form-body">
     <div id="task-input">
+      <!-- Task Content -->
       <input type="text" name="task" id="task" value="{{ task.content }}" />
-      <button type="submit" id="submit">✎ Update</button>
+      <!-- Task Status (Checkbox) -->
+      <input type="checkbox" id="status" name="status" value={{ task.isCompleted }} 
+        {% if task.isCompleted %}
+        checked
+        {% endif %}
+        onclick="handleTaskCompleteStatus(this)"
+      >
+      <label for="status"> Completed</label>
     </div>
+    <button type="submit" id="submit">✎ Update</button>
     <a href="/">↩ Go Back to Home</a>
   </div>
   {% endif %}
