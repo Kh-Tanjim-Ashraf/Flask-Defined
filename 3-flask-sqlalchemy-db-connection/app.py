@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from datetime import datetime
@@ -11,7 +11,7 @@ class Base(DeclarativeBase):
     pass
 
 # Include the DB connection configuration with relative path to the database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///taskManager_1.sqlite'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///taskManager.sqlite'
 
 # Initialize the db by inheriting the base model, so that, SQLAlchemy can map & maintain the registry of database tables with the Python model classes.
 db = SQLAlchemy(model_class=Base)
@@ -23,6 +23,31 @@ class Task(db.Model):
     content: Mapped[str] = mapped_column(nullable=False)
     isCompleted: Mapped[bool] = mapped_column(Boolean(), default=False, nullable=False)
     dateCreated: Mapped[datetime] = mapped_column(server_default=func.now(), nullable=False)
+
+# Route to the home
+@app.route('/', methods=['GET','POST'])
+def index():
+    if request.method == 'POST':
+        # Receive data from the frontend form
+        newTask = request.form['task']
+        
+        # Create an object of `Task` model
+        newTaskObj = Task(content=newTask)
+
+        # Create a db session to insert the new task object in the DB; wrap with a try/except block
+        try:
+            db.session.add(newTaskObj)
+            db.session.commit()
+            return redirect('/')
+        except:
+            return "<h3>There's an issue about inserting the new task</h3>"
+    else:
+        # Create the query to fetch the task records
+        query = db.select(Task).order_by(Task.dateCreated.desc())
+        # Execute the query
+        tasks = db.session.scalars(query).all()
+        # Pass the list of tasks into the template
+        return render_template('index.html', tasks=tasks)
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2%;
+  padding: 0 250px;
+
+  form {
+    padding: 20px;
+    border: 1px solid #000;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+
+    div {
+      display: flex;
+      gap: 5px;
+    }
+
+    div input#task {
+      padding: 10px;
+      border: 1px solid #000;
+      border-radius: 8px;
+    }
+
+    div button#submit {
+      padding: 10px;
+      border: 1px solid #000;
+      border-radius: 8px;
+    }
+  }
+
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  }
+}

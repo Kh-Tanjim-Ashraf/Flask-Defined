@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+<!-- Application Title -->
+{% block title %}
+<title>Flask App - Db Connection by Utilizing SQLAlchemy</title>
+{% endblock %}
+
+<!-- Stylesheet Placeholder -->
+{% block stylesheet %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/main.css') }}"
+/>
+{% endblock %}
+
+<!-- Content Placeholder -->
+{% block content %}
+<h1>Flask App - Db Connection by Utilizing SQLAlchemy</h1>
+
+<!-- Task Insertion Form -->
+<form method="post">
+  <h2>New Task Form</h2>
+  <div>
+    <input type="text" name="task" id="task" />
+    <button type="submit" id="submit">+ Add Task</button>
+  </div>
+</form>
+
+{% if tasks %}
+<!-- Task List Table -->
+<table>
+  <tr>
+    <th>Task</th>
+    <th>Status</th>
+    <th>Action</th>
+  </tr>
+  {% for task in tasks %}
+  <tr>
+    <td>{{ task.content }}</td>
+    <td>
+      {% if task.isCompleted %}
+        <span id="task-completed">✔</span>
+      {% else %}
+        <span id="task-not-completed">✘</span>
+      {% endif %}
+    </td>
+    <td>Update/Delete</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+{% endblock %}
