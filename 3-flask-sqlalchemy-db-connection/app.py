@@ -24,7 +24,7 @@ class Task(db.Model):
     isCompleted: Mapped[bool] = mapped_column(Boolean(), default=False, nullable=False)
     dateCreated: Mapped[datetime] = mapped_column(server_default=func.now(), nullable=False)
 
-# Route to the home
+# Homepage Route
 @app.route('/', methods=['GET','POST'])
 def index():
     if request.method == 'POST':
@@ -40,7 +40,7 @@ def index():
             db.session.commit()
             return redirect('/')
         except:
-            return "<h3>There's an issue about inserting the new task</h3>"
+            return "<h3>There is a problem inserting the new task</h3>"
     else:
         # Create the query to fetch the task records
         query = db.select(Task).order_by(Task.dateCreated.desc())
@@ -48,6 +48,20 @@ def index():
         tasks = db.session.scalars(query).all()
         # Pass the list of tasks into the template
         return render_template('index.html', tasks=tasks)
+
+# Task Delete Route
+@app.route('/delete/<int:id>/')
+def taskDelete(id):
+    # Check if a task exist with the id, otherwise return 404
+    task = Task.query.get_or_404(id)
+
+    # Detele the task
+    try:
+        db.session.delete(task)
+        db.session.commit()
+        return redirect('/')
+    except:
+        return "<h3>There is a problem deleting the task</h3>"
 
 if __name__ == "__main__":
     app.run(debug=True)

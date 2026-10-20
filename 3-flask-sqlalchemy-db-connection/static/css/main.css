@@ -49,12 +49,63 @@ body {
 
     td,
     th {
-      border: 1px solid #dddddd;
+      border: 1px solid #c1c1c1;
       padding: 8px;
     }
 
     tr:nth-child(even) {
       background-color: #dddddd;
+    }
+
+    td.task-status-col .task-completed {
+      color: #10b981;
+    }
+
+    td.task-status-col .task-not-completed {
+      color: #fb2c36;
+    }
+
+    td.task-action-col a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    td.task-action-col .update-btn,
+    td.task-action-col .delete-btn {
+      display: inline-flex;
+      color: #fff;
+      padding: 8px 6px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: color 50ms;
+    }
+
+    td.task-action-col .update-btn {
+      background-color: #2563eb;
+    }
+
+    td.task-action-col .update-btn:hover {
+      background-color: #1d4ed8;
+      border-color: #3b82f6;
+    }
+
+    td.task-action-col .update-btn:focus {
+      outline: 1px solid #3b82f6;
+      outline-offset: 1px;
+    }
+
+    td.task-action-col .delete-btn {
+      background-color: #dc2626;
+    }
+
+    td.task-action-col .delete-btn:hover {
+      background-color: #b91c1c;
+      border-color: #ef4444;
+    }
+
+    td.task-action-col .delete-btn:focus {
+      outline: 1px solid #ef4444;
+      outline-offset: 1px;
     }
   }
 }
