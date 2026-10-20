@@ -49,6 +49,25 @@ def index():
         # Pass the list of tasks into the template
         return render_template('index.html', tasks=tasks)
 
+# Task Update Route
+@app.route('/update/<int:id>/', methods=['GET','POST'])
+def taskUpdate(id):
+    # Check if a task exist with the id, otherwise return 404
+    task = Task.query.get_or_404(id)
+    
+    if request.method == 'POST':
+        # Set the value from the task update form into the task object's content attribute
+        task.content = request.form['task']
+
+        # Commit the change into the DB & return
+        try:
+            db.session.commit()
+            return redirect('/')
+        except:
+            return "<h3>There is a problem updating the task</h3>"
+    else:
+        return render_template('pages/task-update.html', task=task)
+
 # Task Delete Route
 @app.route('/delete/<int:id>/')
 def taskDelete(id):

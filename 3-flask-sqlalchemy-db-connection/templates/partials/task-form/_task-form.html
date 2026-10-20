@@ -1,0 +1,27 @@
+<!-- Task Insertion Form -->
+<form method="post">
+  {% if parentTemplate == "index" %}
+  <!-- Task Insertion Form -->
+  <div id="form-header">
+    <h2>New Task Form</h2>
+  </div>
+  <div id="form-body">
+    <div id="task-input">
+      <input type="text" name="task" id="task" />
+      <button type="submit" id="submit">+ Add</button>
+    </div>
+  </div>
+  {% else %}
+  <!-- Task Update Form -->
+  <div id="form-header">
+    <h2>Update Task Form</h2>
+  </div>
+  <div id="form-body">
+    <div id="task-input">
+      <input type="text" name="task" id="task" value="{{ task.content }}" />
+      <button type="submit" id="submit">✎ Update</button>
+    </div>
+    <a href="/">↩ Go Back to Home</a>
+  </div>
+  {% endif %}
+</form>

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+<!-- Application Title -->
+{% block title %}
+    Task-1
+{% endblock %}
+
+<!-- Stylesheet Placeholder -->
+{% block stylesheet %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/main.css') }}"
+/>
+{% endblock %}
+
+<!-- Content Placeholder -->
+{% block content %}
+    <!-- Pass context inside the partial component -->
+    {% with parentTemplate="task-update" %}
+        <!-- Include the generic task form (For insertion) -->
+        {% include 'partials/task-form/_task-form.html' %}
+    {% endwith %}
+{% endblock %}
